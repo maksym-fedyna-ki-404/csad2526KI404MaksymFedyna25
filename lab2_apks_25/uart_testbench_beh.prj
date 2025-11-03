@@ -1,0 +1,3 @@
+vhdl work "baud_rate_generator.vhd"
+vhdl work "uart_rx.vhd"
+vhdl work "uart_testbench.vhd"

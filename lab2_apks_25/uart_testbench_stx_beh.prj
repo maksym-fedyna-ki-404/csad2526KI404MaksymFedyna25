@@ -1,0 +1,3 @@
+vhdl isim_temp "baud_rate_generator.vhd"
+vhdl isim_temp "uart_rx.vhd"
+vhdl isim_temp "uart_testbench.vhd"
