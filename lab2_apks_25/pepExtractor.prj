@@ -1,0 +1,2 @@
+work	"baud_rate_generator.vhd"
+work	"uart_rx.vhd"

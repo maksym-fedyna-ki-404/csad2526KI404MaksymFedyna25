@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/ise/Desktop/lab2_apks_25/uart_testbench_isim_beh.exe" -prj "/home/ise/Desktop/lab2_apks_25/uart_testbench_beh.prj" "work.uart_testbench" 
