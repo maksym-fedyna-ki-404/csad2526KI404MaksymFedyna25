@@ -1,0 +1,69 @@
+----------------------------------------------------------------------------------
+-- Company: 
+-- Engineer: 
+-- 
+-- Create Date:    06:48:26 10/23/2025 
+-- Design Name: 
+-- Module Name:    baud_rate_generator - Behavioral 
+-- Project Name: 
+-- Target Devices: 
+-- Tool versions: 
+-- Description: 
+--
+-- Dependencies: 
+--
+-- Revision: 
+-- Revision 0.01 - File Created
+-- Additional Comments: 
+--
+----------------------------------------------------------------------------------
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity baud_rate_generator is
+	generic (
+		CLK_FREQ : natural := 50_000_000; 
+		BAUD_RATE : natural := 9600
+	);
+	port (
+		i_clk   : in  std_logic;
+		i_reset : in  std_logic;
+		o_tick  : out std_logic
+	);
+end entity baud_rate_generator;
+
+architecture rtl of baud_rate_generator is 
+	constant C_COUNTER_MAX : natural := (CLK_FREQ / (BAUD_RATE * 16)) - 1;
+	signal r_counter : natural range 0 to C_COUTER_MAX := 0;
+	signal r_tick    : std_logic := '0';
+begin
+
+	process(i_clk, i_reset)
+	begin 
+		if (i_reset = '1') then
+			r_counter <= 0;
+			r_tick    <= '0';
+		elsif (rising_edge(i_clk)) then
+			r_tick <= '0';
+			if (r_counter = C_COUNTER_MAX) then
+				r_counter <= 0;
+				r_tick    <= '1';
+			else
+				r_counter <= r_counter + 1;
+			end if;
+		end if;
+	end process;
+	
+	o_tick <= r_tick;
+	
+end architecture rtl;
+
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx primitives in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
